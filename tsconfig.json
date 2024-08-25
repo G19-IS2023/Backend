@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node12/tsconfig.json",
+  
+  "compilerOptions": {
+    "lib": ["dom"],
+    "preserveConstEnums": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true
+  }
+}

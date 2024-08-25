@@ -1,0 +1,11 @@
+# Ignore environment variables
+.env
+
+# Ignore modules
+node_modules/*
+
+# Ignore TypeScript compiled files
+dist/*
+
+# Ignore coverage report
+coverage/*
