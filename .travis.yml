@@ -3,7 +3,9 @@ node_js:
   - 22.1.0
 
 before_install: 
-  - npm install -g
+  - nvm install 22.1.0
+  - nvm use 22.1.0
+  - npm install 
 
 cache: 
   npm: false
