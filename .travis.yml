@@ -6,7 +6,7 @@ before_install:
   - npm install
 
 script: 
-  -npm test
+  - npm test
 
 cache: 
   npm: false
