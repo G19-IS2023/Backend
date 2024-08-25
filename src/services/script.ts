@@ -13,7 +13,6 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
   }
 
   const token = authHeader;
-  console.log(token);
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!, (err) => {
 
