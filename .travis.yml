@@ -1,3 +1,4 @@
+dist: focal
 language: node_js
 
 before_install: 
@@ -5,7 +6,7 @@ before_install:
   - npm install
 
 script: 
-  - cd tests && npm test
+  -npm test
 
 cache: 
   npm: false
