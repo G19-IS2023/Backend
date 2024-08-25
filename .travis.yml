@@ -1,6 +1,15 @@
 dist: focal
 language: node_js
 
+services: 
+  - mongodb
+
+env:
+  global: 
+    _ DB_CONN_STRING=mongodb+srv://riccardo:patpat@xbooks.bspswjh.mongodb.net/?retryWrites=true&w=majority&appName=XBooks
+    _ DB_NAME=books
+    _ ACCESS_TOKEN_SECRET=miscimosci
+
 before_install: 
   - nvm install
   - npm install
