@@ -11,7 +11,7 @@ const app = express();
 const corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200,
-    Access-Control-Allow-Methods: 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Authorization']
   };
