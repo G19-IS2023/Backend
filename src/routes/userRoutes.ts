@@ -11,41 +11,6 @@ const router = express.Router();
 
 const databaseService = DatabaseService.getInstance();
 
-
-/**
- * @swagger
- * /getUser/{userId}:
- *   get:
- *     summary: Retrieve a user by ID
- *     description: Retrieve a user by their unique ID from the database.
- *     parameters:
- *       - in: path
- *         name: userId
- *         required: true
- *         schema:
- *           type: string
- *         description: The unique ID of the user
- *     responses:
- *       200:
- *         description: A user object
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 _id:
- *                   type: string
- *                 name:
- *                   type: string
- *                 email:
- *                   type: string
- *       404:
- *         description: User not found
- *       406:
- *         description: Invalid user id
- *       500:
- *         description: Unable to find the user, try again
- */
 //API per inviare l'User
 router.get('/getUser/:userId', async(req: Request, res: Response) => {
 
