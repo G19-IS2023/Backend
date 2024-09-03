@@ -4,7 +4,7 @@ import request from 'supertest';
 import app from "../../src/app";
 
 import { DatabaseService } from '../../src/services/database';
-import { Db, ObjectId, OrderedBulkOperation } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 import LibraryEntry from '../../src/models/library';
 import BookTuple from '../../src/models/book';
 import User from '../../src/models/user';
