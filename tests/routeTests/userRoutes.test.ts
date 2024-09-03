@@ -4,11 +4,9 @@ import request from 'supertest';
 import app from "../../src/app";
 
 import { DatabaseService } from '../../src/services/database';
-import { Db, ObjectId, OrderedBulkOperation } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 
 dotenv.config();
-
-// Sistema existingId e notExistingId
 
 const newUserId: string = "507f1f77bcf86cd799439011";
 const existingUserId: string = "66b60e2628dd7ad24a9cf378"
@@ -41,7 +39,6 @@ afterAll(async () => {
 });
 
 describe('User Routes', () => {
-
 
     describe('GET user/getUser/:userId', () => {
         
