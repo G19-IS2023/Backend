@@ -131,14 +131,14 @@ describe('User Routes', () => {
             expect(response.text).toEqual("Invalid user id");
         });
 
-        it('should send status code 406 if the password is less than 8 char long', async () => {
+        it('should send status code 406 if the password is less than 8 characters long', async () => {
             
             const response = await request(app)
             .post("/user/register")
             .send({name: "Bahboh", email: "valid@gmail.com", password: "boh0!?", userId: newUserId})
             
             expect(response.statusCode).toBe(406);
-            expect(response.text).toEqual("The password must be 8 char long");
+            expect(response.text).toEqual("The password must be 8 characters long");
         });
 
         it(`should send status code 406 if the password doesn't contain any letter`, async () => {
@@ -296,7 +296,7 @@ describe('User Routes', () => {
             expect(response.text).toEqual("Cannot find the user");
         });
 
-        it('should send status code 406 if the password is less than 8 char long', async () => {
+        it('should send status code 406 if the password is less than 8 characters long', async () => {
             
             const response = await request(app)
             .put("/user/modifyPassword")
@@ -304,7 +304,7 @@ describe('User Routes', () => {
             .send({userId: existingUserId, oldPassword: "Ciccio0!", newPassword: "Cic0!"});
             
             expect(response.statusCode).toBe(406);
-            expect(response.text).toEqual("The password must be 8 char long");
+            expect(response.text).toEqual("The password must be 8 characters long");
         });
 
         it(`should send status code 406 if the password doesn't contain any letter`, async () => {
@@ -329,7 +329,7 @@ describe('User Routes', () => {
             expect(response.text).toEqual("The password must contain a number");
         });
 
-        it(`should send status code 406 if the password doesn't contain any special char between: ? ! . _ - @ |`, async () => {
+        it(`should send status code 406 if the password doesn't contain any special character between: ? ! . _ - @ |`, async () => {
             
             const response = await request(app)
             .put("/user/modifyPassword")
@@ -337,7 +337,7 @@ describe('User Routes', () => {
             .send({userId: existingUserId, oldPassword: "Ciccio0!", newPassword: "Cicciobello00"});
 
             expect(response.statusCode).toBe(406);
-            expect(response.text).toEqual("The password must contain at least one special char between these: ? ! . _ - @ |");
+            expect(response.text).toEqual("The password must contain at least one special character between these: ? ! . _ - @ |");
         });
 
         it(`should send status code 406 if the user id isn't valid`, async () => {
