@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import LibraryEntry from '../models/library';
+import Library from '../models/library';
 import BookTuple from '../models/book';
 
 // This function is used to verify the token in the request header
@@ -61,8 +61,8 @@ export function validatePassword(password: string, req: Request, res: Response):
 }
 
 // This function is used to retrieve a specific book from the library
-export async function getBookfromLibrary(library: LibraryEntry[], libId: string, bookId: string): Promise<BookTuple | null> {
-  const libraryEntry = library.find((lib) => lib.libId == libId) as LibraryEntry | null;
+export async function getBookfromLibrary(library: Library[], libId: string, bookId: string): Promise<BookTuple | null> {
+  const libraryEntry = library.find((lib) => lib.libId == libId) as Library | null;
   if (!libraryEntry) return null;
 
   const bookTuple = libraryEntry.books.find((book) => book.bookId == bookId) as BookTuple | null;

@@ -5,7 +5,7 @@ import app from "../../src/app";
 
 import { DatabaseService } from '../../src/services/database';
 import { Db, ObjectId } from 'mongodb';
-import LibraryEntry from '../../src/models/library';
+import Library from '../../src/models/library';
 import BookTuple from '../../src/models/book';
 import User from '../../src/models/user';
 
@@ -22,7 +22,7 @@ beforeAll(async () => {
 
     const newUser: User = {name: "Bohbohboh", email: "bohhh@gmail.com", password: "Bohboh0!?", _id: existingId, library: [{libName: "Your Books", libId: "1", books: []}]};
     
-    const library: LibraryEntry[] = newUser.library;
+    const library: Library[] = newUser.library;
     library.forEach((lib) => {
         if(lib.libId === "1") lib.books.push(book);
     });

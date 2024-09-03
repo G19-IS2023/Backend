@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import User from "../models/user";
-import LibraryEntry from "../models/library";
+import Library from "../models/library";
 import BookTuple from "../models/book";
 import { DatabaseService } from "../services/database";
 import { ObjectId } from "mongodb";
@@ -34,7 +34,7 @@ router.get("/library/:libId/getBook/:bookId/id/:userId", async (req: Request, re
         } else {
             
             // Get the library and the book
-            const library: LibraryEntry[] = user!.library;
+            const library: Library[] = user!.library;
             const book: BookTuple | null = await getBookfromLibrary(library, libId, bookId);
 
             // Check if the book exists
@@ -79,7 +79,7 @@ router.get("/library/:libId/id/:userId/getBook/:bookId", async (req: Request, re
         } else {
             
             // Get the library and the book
-            const library: LibraryEntry[] = user!.library;
+            const library: Library[] = user!.library;
             const book: BookTuple | null = await getBookfromLibrary(library, libId, bookId);
 
             // Check if the book exists
@@ -124,11 +124,11 @@ router.get("/getSpecLibrary/:libId/id/:userId", async (req: Request, res: Respon
         } else {
 
             // Get the library
-            const library = user!.library.find((lib: LibraryEntry) => {
+            const library = user!.library.find((lib: Library) => {
             
                 if(lib.libId == libId) return lib;
                 return null;
-            }) as LibraryEntry | null;
+            }) as Library | null;
             
             // Check if the library exists
             if(library) {
@@ -170,7 +170,7 @@ router.get("/getLibraries/:userId", async (req: Request, res: Response) => {
         } else {
 
             // Get the libraries
-            const libraries: LibraryEntry[] = user!.library;
+            const libraries: Library[] = user!.library;
             
             res.status(200).json(libraries);
         }
@@ -208,7 +208,7 @@ router.put("/modifyPages", async(req: Request, res: Response) => {
         } else {
 
             // Get the libraries' container and check if the library exists, then update the number of pages
-            const library: LibraryEntry[] = user!.library;
+            const library: Library[] = user!.library;
             let libraryPresence: boolean = false;
 
             library.forEach((lib) => {
@@ -258,10 +258,10 @@ router.post("/createLibrary", async (req: Request, res: Response) => {
         if(user) {
 
             // Get the the container of the libraries
-            const library: LibraryEntry[] = user.library;
+            const library: Library[] = user.library;
 
             // Creating the new library
-            const newLibrary: LibraryEntry = { libName: libName as string, libId: libId as string, books: [] as BookTuple[]};
+            const newLibrary: Library = { libName: libName as string, libId: libId as string, books: [] as BookTuple[]};
 
             // Add the new library to the container
             library.push(newLibrary);
@@ -304,7 +304,7 @@ router.post("/addBook", async(req: Request, res: Response) => {
         if(user) {
 
             // Get the libraries' container and check if the library exists
-            const library: LibraryEntry[] = user.library;
+            const library: Library[] = user.library;
             let libraryPresence: boolean = false;
 
             library.forEach((lib) => {
@@ -359,7 +359,7 @@ router.delete("/library/:libId/deleteBook/:bookId/id/:userId", async (req: Reque
         if(user) {
 
             // Get the libraries' container and check if the library exists
-            const library: LibraryEntry[] = user.library;
+            const library: Library[] = user.library;
             let libraryPresence: boolean = false;
 
             library.forEach((lib) => {
@@ -413,11 +413,11 @@ router.delete("/deleteLibrary/:libId/id/:userId", async (req: Request, res: Resp
         if(user) {
 
             // Get the libraries' container and if the libraries exists, delete it
-            const library: LibraryEntry[] = user.library;
+            const library: Library[] = user.library;
             
             const updateLibrary = library.filter((lib) => {
                 return lib.libId !== libId;
-            }) as LibraryEntry[];
+            }) as Library[];
 
             // Delete the library if it's been deleted a library
             if(library.length !== updateLibrary.length) {

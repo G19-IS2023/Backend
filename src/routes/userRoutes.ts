@@ -4,7 +4,7 @@ import { DatabaseService } from '../services/database';
 import { ObjectId } from 'mongodb';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import LibraryEntry from '../models/library';
+import Library from '../models/library';
 import { validateEmail, validatePassword, verifyToken } from '../services/script';
 
 const router = express.Router();
@@ -99,8 +99,8 @@ router.post('/register', async (req: Request, res: Response) => {
         const name: string = req.body.name;
         const email: string = req.body.email;
         const password: string = req.body.password;
-        const predLibrary: LibraryEntry = {libName: "Your Books", libId: "1", books: []};
-        const library: LibraryEntry[] = [predLibrary]; // Default library
+        const predLibrary: Library = {libName: "Your Books", libId: "1", books: []};
+        const library: Library[] = [predLibrary]; // Default library
         const objectId: string = req.body.userId;
         
         // Check if the userId is valid

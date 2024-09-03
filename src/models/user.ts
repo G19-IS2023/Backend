@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import LibraryEntry from './library';
+import Library from './library';
 
 // Model for User
 export default class User {
@@ -9,7 +9,7 @@ export default class User {
         public name: string,
         public email: string,
         public password: string,
-        public library: LibraryEntry[],
+        public library: Library[],
         public _id: ObjectId
         
     ) {
