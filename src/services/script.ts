@@ -52,7 +52,7 @@ export function validatePassword(password: string, req: Request, res: Response):
 
   // Check for at least one special character among: ? ! . _ - @ |
   if (!/[?!._\-@|]/.test(password)) {
-    res.status(406).send("The password must contain at least one special character among: ? ! . _ - @ |");
+    res.status(406).send("The password must contain at least one special character between these: ? ! . _ - @ |");
     return false;
   }
 
