@@ -6,7 +6,7 @@ Questa repository contiene il codice del **backend** del progetto XBooks. Il bac
 - [x] Della loro documentazione
 - [x] Del loro testing
 
-# Opzioni per a
+# Opzioni per avviare il Backend
 
 Il backend è online su questo indirizzo: [https://backend-production-7b98.up.railway.app](https://backend-production-7b98.up.railway.app).
 La documentazione swagger invece è live all'URL [https://backend-production-7b98.up.railway.app/api-docs](https://backend-production-7b98.up.railway.app/api-docs). Qui
