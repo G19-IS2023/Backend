@@ -168,7 +168,7 @@ describe('User Routes', () => {
             .send({name: "Bahboh", email: "valid@gmail.com", password: "NotValidPassword00", userId: newUserId})
 
             expect(response.statusCode).toBe(406);
-            expect(response.text).toEqual("The password must contain at least one special char between these: ? ! . _ - @ |");
+            expect(response.text).toEqual("The password must contain at least one special character between these: ? ! . _ - @ |");
         });
 
         it('should send code 201 if the registration is successful', async () => {
