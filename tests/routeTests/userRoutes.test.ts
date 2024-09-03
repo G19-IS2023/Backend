@@ -161,7 +161,7 @@ describe('User Routes', () => {
             expect(response.text).toEqual("The password must contain a number");
         });
 
-        it(`should send status code 406 if the password doesn't contain any special char between: ? ! . _ - @ |`, async () => {
+        it(`should send status code 406 if the password doesn't contain any special character between: ? ! . _ - @ |`, async () => {
             
             const response = await request(app)
             .post("/user/register")
