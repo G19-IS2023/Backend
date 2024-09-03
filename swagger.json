@@ -1,179 +1,102 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "User API",
-      "version": "1.0.0",
-      "description": "API documentation for user-related operations"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User API",
+    "version": "1.0.0",
+    "description": "API documentation for user-related operations"
+  },
+  "servers": [
+    {
+      "url": "https://backend-production-7b98.up.railway.app"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User operations"
     },
-    "servers": [
-      {
-        "url": "https://backend-production-7b98.up.railway.app"
-      }
-    ],
-    "tags": [
-      {
-        "name": "User",
-        "description": "User operations"
-      },
-      {
-        "name": "Books",
-        "description": "Book operations"
-      }
-    ],
-    "paths": {
-      "/user/getUser/{userId}": {
-        "get": {
-          "tags": ["User"],
-          "summary": "Retrieve a user by ID",
-          "description": "Retrieve a user by their unique ID from the database.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "A user object",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "_id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "User not found"
-            },
-            "406": {
-              "description": "Invalid user id"
-            },
-            "500": {
-              "description": "Unable to find the user, try again"
-            }
-          }
-        }
-      },
-      "/user/login": {
-        "post": {
-          "tags": ["User"],
-          "summary": "Verify credentials and send accessToken",
-          "description": "Verify user credentials and send an access token.",
-          "requestBody": {
+    {
+      "name": "Books",
+      "description": "Book operations"
+    }
+  ],
+  "paths": {
+    "/user/getUser/{userId}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Retrieve a user by ID",
+        "description": "Retrieve a user by their unique ID from the database.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
             "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "email": {
+                    "_id": {
                       "type": "string"
                     },
-                    "password": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Login successful",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "userId": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "401": {
-              "description": "Wrong password"
-            },
-            "404": {
-              "description": "Cannot find user"
-            },
-            "500": {
-              "description": "Unable to login, try again"
-            }
-          }
-        }
-      },
-      "/user/register": {
-        "post": {
-          "tags": ["User"],
-          "summary": "Register a user and encrypt the password",
-          "description": "Register a new user and encrypt their password.",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
                     "name": {
                       "type": "string"
                     },
                     "email": {
                       "type": "string"
-                    },
-                    "password": {
-                      "type": "string"
-                    },
-                    "userId": {
-                      "type": "string"
                     }
                   }
                 }
               }
             }
           },
-          "responses": {
-            "201": {
-              "description": "User created successfully"
-            },
-            "409": {
-              "description": "Email or Username already exists"
-            },
-            "406": {
-              "description": "Invalid email or user id"
-            },
-            "500": {
-              "description": "Unable to register the user, try again"
-            }
+          "404": {
+            "description": "User not found"
+          },
+          "406": {
+            "description": "Invalid user id"
+          },
+          "500": {
+            "description": "Unable to find the user, try again"
           }
         }
-      },
-      "/user/modifyUsername": {
-        "put": {
-          "tags": ["User"],
-          "summary": "Modify the username",
-          "description": "Modify the username of an existing user.",
-          "requestBody": {
-            "required": true,
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Verify credentials and send accessToken",
+        "description": "Verify user credentials and send an access token.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -181,263 +104,400 @@
                   "properties": {
                     "userId": {
                       "type": "string"
-                    },
-                    "newUsername": {
-                      "type": "string"
                     }
                   }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Successfully updated"
-            },
-            "409": {
-              "description": "Username already exists"
-            },
-            "404": {
-              "description": "Cannot find user"
-            },
-            "406": {
-              "description": "Invalid user id"
-            },
-            "500": {
-              "description": "Unable to update the username, try again"
-            }
+          "401": {
+            "description": "Wrong password"
+          },
+          "404": {
+            "description": "Cannot find user"
+          },
+          "500": {
+            "description": "Unable to login, try again"
           }
         }
-      },
-      "/user/modifyPassword": {
-        "put": {
-          "tags": ["User"],
-          "summary": "Modify the password",
-          "description": "Modify the password of an existing user.",
-          "requestBody": {
+      }
+    },
+    "/user/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Register a user and encrypt the password",
+        "description": "Register a new user and encrypt their password.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          },
+          "409": {
+            "description": "Email or Username already exists"
+          },
+          "406": {
+            "description": ["Invalid email or user id",  "The password must be 8 char long", "The password must contain a letter", "The password must contain a number", "The password must contain at least one special char between these: ? ! . _ - @ |"]
+          },
+          "500": {
+            "description": "Unable to register the user, try again"
+          }
+        }
+      }
+    },
+    "/user/modifyUsername": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Modify the username",
+        "description": "Modify the username of an existing user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "newUsername": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated"
+          },
+          "409": {
+            "description": "Username already exists"
+          },
+          "404": {
+            "description": "Cannot find user"
+          },
+          "406": {
+            "description": "Invalid user id"
+          },
+          "500": {
+            "description": "Unable to update the username, try again"
+          }
+        }
+      }
+    },
+    "/user/modifyPassword": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Modify the password",
+        "description": "Modify the password of an existing user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "oldPassword": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated"
+          },
+          "401": {
+            "description": "Old password is incorrect"
+          },
+          "404": {
+            "description": "Cannot find the user"
+          },
+          "406": {
+            "description": ["Invalid user id", "The password must be 8 char long", "The password must contain a letter", "The password must contain a number", "The password must contain at least one special char between these: ? ! . _ - @ |"]
+          },
+          "500": {
+            "description": "Unable to update the password, try again"
+          }
+        }
+      }
+    },
+    "/user/deleteProfile/{userId}": {
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete the user account",
+        "description": "Delete the user account by their unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
             "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted"
+          },
+          "404": {
+            "description": "Cannot find user"
+          },
+          "406": {
+            "description": "Invalid user id"
+          },
+          "500": {
+            "description": "Unable to delete the account, try again"
+          }
+        }
+      }
+    },
+    "/library/{libId}/getBook/{bookId}/id/{userId}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Retrieve a book by ID",
+        "description": "Retrieve a book by its unique ID from the library.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "libId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the library"
+          },
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the book"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A book object",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "userId": {
+                    "bookId": {
                       "type": "string"
                     },
-                    "oldPassword": {
-                      "type": "string"
-                    },
-                    "newPassword": {
-                      "type": "string"
+                    "pagesRead": {
+                      "type": "number"
                     }
                   }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Successfully updated"
-            },
-            "401": {
-              "description": "Old password is incorrect"
-            },
-            "404": {
-              "description": "Cannot find the user"
-            },
-            "406": {
-              "description": "Invalid user id"
-            },
-            "500": {
-              "description": "Unable to update the password, try again"
-            }
+          "404": {
+            "description": "Book not found"
+          },
+          "500": {
+            "description": "Cannot find the book, try again"
           }
         }
-      },
-      "/user/deleteProfile/{userId}": {
-        "delete": {
-          "tags": ["User"],
-          "summary": "Delete the user account",
-          "description": "Delete the user account by their unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
+      }
+    },
+    "/library/{libId}/id/{userId}/getBook/{bookId}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Check if a book exists in the library",
+        "description": "Check if a book exists in the library by its unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "libId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the library"
+          },
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the book"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Successfully deleted"
-            },
-            "404": {
-              "description": "Cannot find user"
-            },
-            "406": {
-              "description": "Invalid user id"
-            },
-            "500": {
-              "description": "Unable to delete the account, try again"
-            }
+          },
+          "404": {
+            "description": "Book not found"
+          },
+          "500": {
+            "description": "Cannot find the book, try again"
           }
         }
-      },
-      "/library/{libId}/getBook/{bookId}/id/{userId}": {
-        "get": {
-          "tags": ["Books"],
-          "summary": "Retrieve a book by ID",
-          "description": "Retrieve a book by its unique ID from the library.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "libId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the library"
+      }
+    },
+    "/getSpecLibrary/{libId}/id/{userId}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Retrieve a specific library by ID",
+        "description": "Retrieve a specific library by its unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "libId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "in": "path",
-              "name": "bookId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the book"
+            "description": "The unique ID of the library"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "A book object",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "bookId": {
-                        "type": "string"
-                      },
-                      "pagesRead": {
-                        "type": "number"
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A library object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "libId": {
+                      "type": "string"
+                    },
+                    "libName": {
+                      "type": "string"
+                    },
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "bookId": {
+                            "type": "string"
+                          },
+                          "pagesRead": {
+                            "type": "number"
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Book not found"
-            },
-            "500": {
-              "description": "Cannot find the book, try again"
             }
+          },
+          "404": {
+            "description": "Library not found"
+          },
+          "500": {
+            "description": "Cannot find the library, try again"
           }
         }
-      },
-      "/library/{libId}/id/{userId}/getBook/{bookId}": {
-        "get": {
-          "tags": ["Books"],
-          "summary": "Check if a book exists in the library",
-          "description": "Check if a book exists in the library by its unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "libId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the library"
+      }
+    },
+    "/getLibraries/{userId}": {
+      "get": {
+        "tags": ["Books"],
+        "summary": "Retrieve all libraries for a user",
+        "description": "Retrieve all libraries for a user by their unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "in": "path",
-              "name": "bookId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the book"
-            },
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Book exists",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "result": {
-                        "type": "boolean"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Book not found"
-            },
-            "500": {
-              "description": "Cannot find the book, try again"
-            }
+            "description": "The unique ID of the user"
           }
-        }
-      },
-      "/getSpecLibrary/{libId}/id/{userId}": {
-        "get": {
-          "tags": ["Books"],
-          "summary": "Retrieve a specific library by ID",
-          "description": "Retrieve a specific library by its unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "libId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the library"
-            },
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "A library object",
-              "content": {
-                "application/json": {
-                  "schema": {
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of libraries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "type": "object",
                     "properties": {
                       "libId": {
@@ -464,281 +524,221 @@
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Library not found"
-            },
-            "500": {
-              "description": "Cannot find the library, try again"
-            }
-          }
-        }
-      },
-      "/getLibraries/{userId}": {
-        "get": {
-          "tags": ["Books"],
-          "summary": "Retrieve all libraries for a user",
-          "description": "Retrieve all libraries for a user by their unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "A list of libraries",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "libId": {
-                          "type": "string"
-                        },
-                        "libName": {
-                          "type": "string"
-                        },
-                        "books": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "bookId": {
-                                "type": "string"
-                              },
-                              "pagesRead": {
-                                "type": "number"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "User not found"
-            },
-            "500": {
-              "description": "Cannot find the libraries, try again"
-            }
-          }
-        }
-      },
-      "/modifyPages": {
-        "put": {
-          "tags": ["Books"],
-          "summary": "Modify the number of pages read",
-          "description": "Modify the number of pages read for a specific book in a library.",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "bookId": {
-                      "type": "string"
-                    },
-                    "libId": {
-                      "type": "string"
-                    },
-                    "pages": {
-                      "type": "number"
-                    },
-                    "userId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Number of pages read updated"
-            },
-            "404": {
-              "description": "User or library not found"
-            },
-            "500": {
-              "description": "Cannot modify the number of pages"
-            }
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Cannot find the libraries, try again"
           }
         }
-      },
-      "/createLibrary": {
-        "post": {
-          "tags": ["Books"],
-          "summary": "Create a new library",
-          "description": "Create a new library for a user.",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "libName": {
-                      "type": "string"
-                    },
-                    "libId": {
-                      "type": "string"
-                    },
-                    "userId": {
-                      "type": "string"
-                    }
+      }
+    },
+    "/modifyPages": {
+      "put": {
+        "tags": ["Books"],
+        "summary": "Modify the number of pages read",
+        "description": "Modify the number of pages read for a specific book in a library.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookId": {
+                    "type": "string"
+                  },
+                  "libId": {
+                    "type": "string"
+                  },
+                  "pages": {
+                    "type": "number"
+                  },
+                  "userId": {
+                    "type": "string"
                   }
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Number of pages read updated"
           },
-          "responses": {
-            "200": {
-              "description": "Library created successfully"
-            },
-            "404": {
-              "description": "User not found"
-            },
-            "500": {
-              "description": "Failed to create the library, try again"
-            }
+          "404": {
+            "description": "User or library not found"
+          },
+          "500": {
+            "description": "Cannot modify the number of pages"
           }
         }
-      },
-      "/addBook": {
-        "post": {
-          "tags": ["Books"],
-          "summary": "Add a book to a library",
-          "description": "Add a new book to a specific library.",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "bookId": {
-                      "type": "string"
-                    },
-                    "libId": {
-                      "type": "string"
-                    },
-                    "userId": {
-                      "type": "string"
-                    }
+      }
+    },
+    "/createLibrary": {
+      "post": {
+        "tags": ["Books"],
+        "summary": "Create a new library",
+        "description": "Create a new library for a user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "libName": {
+                    "type": "string"
+                  },
+                  "libId": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
                   }
                 }
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Library created successfully"
           },
-          "responses": {
-            "200": {
-              "description": "Book added successfully"
-            },
-            "404": {
-              "description": "User or library not found"
-            },
-            "500": {
-              "description": "Cannot add the book"
-            }
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Failed to create the library, try again"
           }
         }
-      },
-      "/library/{libId}/deleteBook/{bookId}/id/{userId}": {
-        "delete": {
-          "tags": ["Books"],
-          "summary": "Delete a book from a library",
-          "description": "Delete a book from a specific library by its unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "libId",
-              "required": true,
+      }
+    },
+    "/addBook": {
+      "post": {
+        "tags": ["Books"],
+        "summary": "Add a book to a library",
+        "description": "Add a new book to a specific library.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the library"
-            },
-            {
-              "in": "path",
-              "name": "bookId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the book"
-            },
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Book deleted successfully"
-            },
-            "404": {
-              "description": "User or library not found"
-            },
-            "500": {
-              "description": "Cannot delete the book"
+                "type": "object",
+                "properties": {
+                  "bookId": {
+                    "type": "string"
+                  },
+                  "libId": {
+                    "type": "string"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Book added successfully"
+          },
+          "404": {
+            "description": "User or library not found"
+          },
+          "500": {
+            "description": "Cannot add the book"
+          }
         }
-      },
-      "/deleteLibrary/{libId}/id/{userId}": {
-        "delete": {
-          "tags": ["Books"],
-          "summary": "Delete a library",
-          "description": "Delete a specific library by its unique ID.",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "libId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the library"
+      }
+    },
+    "/library/{libId}/deleteBook/{bookId}/id/{userId}": {
+      "delete": {
+        "tags": ["Books"],
+        "summary": "Delete a book from a library",
+        "description": "Delete a book from a specific library by its unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "libId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "in": "path",
-              "name": "userId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "The unique ID of the user"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Library deleted successfully"
+            "description": "The unique ID of the library"
+          },
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            "404": {
-              "description": "User or library not found"
+            "description": "The unique ID of the book"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            "500": {
-              "description": "Cannot delete the library"
-            }
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book deleted successfully"
+          },
+          "404": {
+            "description": "User or library not found"
+          },
+          "500": {
+            "description": "Cannot delete the book"
+          }
+        }
+      }
+    },
+    "/deleteLibrary/{libId}/id/{userId}": {
+      "delete": {
+        "tags": ["Books"],
+        "summary": "Delete a library",
+        "description": "Delete a specific library by its unique ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "libId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the library"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique ID of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Library deleted successfully"
+          },
+          "404": {
+            "description": "User or library not found"
+          },
+          "500": {
+            "description": "Cannot delete the library"
           }
         }
       }
     }
   }
+}

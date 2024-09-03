@@ -1,5 +1,8 @@
 import { MongoClient, Db } from "mongodb";
 
+/**
+ * Represents a service for interacting with a database.
+ */
 export class DatabaseService {
 
     private static instance: DatabaseService;
@@ -8,6 +11,9 @@ export class DatabaseService {
 
     private constructor() {}
 
+    /**
+     * Returns the singleton instance of the DatabaseService.
+     */
     public static getInstance(): DatabaseService {
         if (!DatabaseService.instance) {
             DatabaseService.instance = new DatabaseService();
@@ -15,6 +21,11 @@ export class DatabaseService {
         return DatabaseService.instance;
     }
 
+    /**
+     * Retrieves the database connection.
+     * returns A promise that resolves to the database connection.
+     * throws Error if the database connection configuration is missing.
+     */
     public async getDb(): Promise<Db> {
         if (!this.client || !this.db) {
             if (!process.env.DB_CONN_STRING || !process.env.DB_NAME) {
@@ -31,17 +42,4 @@ export class DatabaseService {
         }
         return this.db;
     }
-
-    public setDB(db: Db) {
-        this.db = db;
-    }
-
-    public getClient(): MongoClient | undefined {
-        return this.client;
-    }
-
-    public setClient(client: MongoClient) {
-        this.client = client;
-    }
-
 }
