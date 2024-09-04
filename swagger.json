@@ -190,6 +190,17 @@
             }
           }
         },
+        "parameters":[
+          {
+            "in": "header",
+            "name": "accessToken",
+            "required": true,
+            "schema": {
+            "type": "string"
+            },
+            "description": "Access token for authentication"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully updated"
@@ -235,6 +246,17 @@
             }
           }
         },
+        "parameters":[
+          {
+            "in": "header",
+            "name": "accessToken",
+            "required": true,
+            "schema": {
+            "type": "string"
+            },
+            "description": "Access token for authentication"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successfully updated"
@@ -268,6 +290,15 @@
               "type": "string"
             },
             "description": "The unique ID of the user"
+          }, 
+          {
+            "in": "header",
+            "name": "accessToken",
+            "required": true,
+            "schema": {
+            "type": "string"
+            },
+            "description": "Access token for authentication"
           }
         ],
         "responses": {
