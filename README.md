@@ -16,7 +16,7 @@ Se il link non dovesse andare, significherebbe che il sito non è più online, d
 
 1. Clonare il progetto con il comando ```git clone https://github.com/G19-IS2023/Backend.git``` su una shell git
 2. Eseguire ```cd Backend``` per entrare nella cartella
-3. Definire un file ```.env``` all'interno del quale definire le seguenti variabili d'ambiente:
+3. Creare un file ```.env``` all'interno del quale definire le seguenti variabili d'ambiente:
 ```
 PORT=numeroPorta
 DB_CONN_STRING=mongoDbConnectionString
