@@ -379,65 +379,6 @@
         }
       }
     },
-    "/library/{libId}/id/{userId}/getBook/{bookId}": {
-      "get": {
-        "tags": ["Books"],
-        "summary": "Check if a book exists in the library",
-        "description": "Check if a book exists in the library by its unique ID.",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "libId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The unique ID of the library"
-          },
-          {
-            "in": "path",
-            "name": "bookId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The unique ID of the book"
-          },
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The unique ID of the user"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Book exists",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Book not found"
-          },
-          "500": {
-            "description": "Cannot find the book, try again"
-          }
-        }
-      }
-    },
     "/getSpecLibrary/{libId}/id/{userId}": {
       "get": {
         "tags": ["Books"],
