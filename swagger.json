@@ -379,7 +379,7 @@
         }
       }
     },
-    "/getSpecLibrary/{libId}/id/{userId}": {
+    "/library/getSpecLibrary/{libId}/id/{userId}": {
       "get": {
         "tags": ["Books"],
         "summary": "Retrieve a specific library by ID",
@@ -446,7 +446,7 @@
         }
       }
     },
-    "/getLibraries/{userId}": {
+    "/library/getLibraries/{userId}": {
       "get": {
         "tags": ["Books"],
         "summary": "Retrieve all libraries for a user",
@@ -507,7 +507,7 @@
         }
       }
     },
-    "/modifyPages": {
+    "/library/modifyPages": {
       "put": {
         "tags": ["Books"],
         "summary": "Modify the number of pages read",
@@ -549,7 +549,7 @@
         }
       }
     },
-    "/createLibrary": {
+    "/library/createLibrary": {
       "post": {
         "tags": ["Books"],
         "summary": "Create a new library",
@@ -588,7 +588,7 @@
         }
       }
     },
-    "/addBook": {
+    "/library/addBook": {
       "post": {
         "tags": ["Books"],
         "summary": "Add a book to a library",
@@ -674,7 +674,7 @@
         }
       }
     },
-    "/deleteLibrary/{libId}/id/{userId}": {
+    "/library/deleteLibrary/{libId}/id/{userId}": {
       "delete": {
         "tags": ["Books"],
         "summary": "Delete a library",
