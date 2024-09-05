@@ -93,6 +93,16 @@ describe('User Routes', () => {
             expect(response.statusCode).toBe(401);
             expect(response.text).toEqual("Wrong password");
         });
+
+        it(`should send status code 404 if the user doesn't exists`, async () => {
+
+            const response = await request(app)
+            .post("/user/login")
+            .send({email: "notExist@gmail.com", password: "Password0!?"});
+
+            expect(response.statusCode).toBe(404);
+            expect(response.text).toEqual("Cannot find user");
+        });
     });
 
 
@@ -228,7 +238,7 @@ describe('User Routes', () => {
             const response = await request(app)
             .put("/user/modifyUsername")
             .set('Authorization', `${accessToken}`)
-            .send({userId: existingUserId, newUsername: "Pat"});
+            .send({userId: existingUserId, newUsername: "Rickypat"});
 
             expect(response.statusCode).toBe(409);
             expect(response.text).toEqual("Username already exist");
