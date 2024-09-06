@@ -30,3 +30,5 @@ Una volta essersi assicurati di non essere collegati a una rete Wi-fi, il cui fi
 Utilizzando software come **Postman** potrete testare le API in locale.
 Per farlo usate il link che trovate nel file server.ts ```http://localhost:${PORT}```, sostituendo la porta con quella che avete inserito
 nel file .env, nell'applicazione e da lì cominciare a fare chiamate alle API come ```http://localhost:${PORT}/user/getUser/668fe618d6980b9e3fc15fca```.
+
+Dopo aver avviato il backend, puoi avviare il frontend a questo link (https://github.com/G19-IS2023/Frontend)[https://github.com/G19-IS2023/Frontend]
