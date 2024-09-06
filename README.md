@@ -23,7 +23,7 @@ DB_CONN_STRING=mongoDbConnectionString
 DB_NAME=dbName
 ACCESS_TOKEN_SECRET=stringaPersonalePerGenerareToken
 ```
-Una volta essersi assicurati di non essere collegati a una rete Wi-fi, il cui firewall blocchi la connessione al database potete:
+Assicurarsi, inoltre, che nel database che decidete di utilizzare, si chiami "books" e ci sia una collection chiamata "users". Una volta essersi assicurati di non essere collegati a una rete Wi-fi, il cui firewall blocchi la connessione al database potete:
 1. Eseguire ```npm install``` per installare le librerie del progetto
 2. Eseguire ```npm start``` per avviare il programma in locale
 
